@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Post: <%= @post.title %></h1>
+
+<table class="post">
+  <tr>
+    <th colspan="2"><%= @post.created_at.in_time_zone('Bangkok').strftime("%d/%m/%Y %H:%M") %></th>
+  </tr>
+  <tr>
+    <td><div class="question">Q{</div></td>
+    <td><%= sanitize @post.body %>
+  </tr>
+  
+<% @post.comments.each do |comment| %>
+  <tr>
+    <th colspan="2"><%= comment.created_at.in_time_zone('Bangkok').strftime("%d/%m/%Y %H:%M") %></th>
+  </tr>
+  <tr>
+    <td><div class="answer">A{</div></td>
+    <td><%= sanitize comment.body %></td>
+  </tr>
+<% end %>
+</table>
+<p><%= link_to '+ Reply', new_comment_path %></p>
