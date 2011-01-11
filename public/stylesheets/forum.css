@@ -1,12 +1,119 @@
-.post tr {
+/* Css reset */
+html, body {
+	padding: 0;
+	margin: 0;
+}
+
+html {
+	font-size: 1em;
+}
+
+body {
+	font-size: 100%;
+}
+
+a img, :link img, :visited img {
+	border: 0;
+}
+
+/* Styles for page layout */
+
+#wrap {
+  width: 760px;
+  margin: 0 auto;
+}
+
+#header, #content {
+  padding: 20px;
+}
+
+#header {
+  margin-bottom: 20px;
+  background: #2f4456;
+  text-align: center;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+#nav, #footer {
+  padding: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#nav {
+  margin-bottom: 20px;
+  background: #7192A8;
+}
+
+#content {
+  background: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#footer {
+  margin: 20px 0px 40px 0px;
+  background: #425769;
+  text-align: center;
+}
+
+/* Styles for forum tables */
+
+table {
+  width: 100%;
+	border-collapse: collapse;  
+	border-spacing: 0; 
+}
+
+.forum tr+tr {
+  border-bottom: 1px solid #ccc;
+}
+
+td, th {
+  text-align: left;
   vertical-align: top;
 }
 
-.forum th, .post th {
-  text-align: left;
+th {
+  background: #7192A8;
+  color: #fff;
 }
 
+td {
+  padding: 10px 0px;
+}
+
+/* Styles for forum texts */
+
+#header h1, #nav p, #footer p {
+  margin: 0px;
+  color: #fff;
+}
+
+#nav a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+}
+
+#nav a:hover {
+  background: none;
+  color: #2f4456;
+}
+
+/* Styles for special symbols */
+
 .question, .answer {
-  font-size: 3.5em;
+  width: 50px;
+  padding-right: 10px;
+  font-size: 3em;
   line-height: 1;
+  text-align: right;
 }
