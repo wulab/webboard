@@ -4,21 +4,57 @@
 
 <table class="post">
   <tr>
-    <th colspan="2"><%= @post.created_at.in_time_zone('Bangkok').strftime("%d/%m/%Y %H:%M") %></th>
+    <th colspan="2">
+      <div class="time">
+        <%= @post.created_at.in_time_zone('Bangkok').strftime("%d/%m/%Y %H:%M") %>
+      </div>
+      <div class="action">
+        <%= link_to 'Edit', edit_post_path(@post) %> | 
+        <%= link_to 'Destroy', @post, :confirm => 'Are you sure?', :method => :delete %>
+      </div>
+    </th>
   </tr>
+  
   <tr>
-    <td><div class="question">Q{</div></td>
-    <td><%= sanitize @post.body %>
+    <td><div class="big_letter">?{</div></td>
+    <td>
+      <div class="post_body">
+        <%= sanitize @post.body %>
+      </div>
+    </td>
   </tr>
   
 <% @post.comments.each do |comment| %>
   <tr>
-    <th colspan="2"><%= comment.created_at.in_time_zone('Bangkok').strftime("%d/%m/%Y %H:%M") %></th>
+    <th colspan="2">
+      <div class="time">
+        <%= comment.created_at.in_time_zone('Bangkok').strftime("%d/%m/%Y %H:%M") %>
+      </div>
+    </th>
   </tr>
+  
   <tr>
-    <td><div class="answer">A{</div></td>
-    <td><%= sanitize comment.body %></td>
+    <td><div class="big_letter">r{</div></td>
+    <td>
+      <div class="post_body">
+        <%= sanitize comment.body %>
+      </div>
+    </td>
   </tr>
 <% end %>
+
+<% form_for [@post, Comment.new] do |f| %>
+  <tr>
+    <th colspan="2"><div class="time"><%= Time.now.in_time_zone('Bangkok').strftime("%d/%m/%Y %H:%M") %></th>
+  </tr>
+  
+  <tr>
+    <td><div class="big_letter">r{</div></td>
+    <td>
+      <%= f.text_area :body, :size => "60x6" %><br />
+      <%= f.submit "Submit" %>
+    </td>
+  </tr>
+<% end %>
+
 </table>
-<p><%= link_to '+ Reply', new_comment_path(:post_id => @post) %></p>

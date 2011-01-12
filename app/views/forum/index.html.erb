@@ -10,17 +10,17 @@
     <th></th>
     <th>Post / Title</th>
     <th>Replies</th>
-    <th>Last Post By</th>
+    <th>Post by</th>
   </tr>
 
 <% @posts.each do |post| %>
   <tr>
-    <td><div class="question">Q{</div></td>
+    <td><div class="big_letter">?</div></td>
     <td>      
       <%= link_to post do %>
         <strong><%= post.title %></strong>
       <% end %><br />
-      <%= truncate strip_tags(post.body), :length => 80 %>
+      <%= truncate strip_tags(post.body), :length => 60 %>
     </td>
     <td>Replies: <%= post.comments.count %></td>
     <td></td>

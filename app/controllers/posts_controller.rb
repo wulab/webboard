@@ -1,12 +1,15 @@
 class PostsController < ApplicationController
+  before_filter :authenticate, :except => [:index, :show]
+  
   # GET /posts
   # GET /posts.xml
   def index
-    @posts = Post.all
+    @posts = Post.order("created_at DESC")
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { redirect_to forum_url }
       format.xml  { render :xml => @posts }
+      format.atom # index.atom.builder
     end
   end
 
@@ -76,8 +79,16 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to(posts_url) }
+      format.html { redirect_to forum_url }
       format.xml  { head :ok }
     end
   end
+  
+  private
+  
+    def authenticate
+      authenticate_or_request_with_http_basic do |name, password|
+        name == "admin" && password == "secret"
+      end
+    end
 end
