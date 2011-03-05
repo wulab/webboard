@@ -6,7 +6,7 @@
   <tr>
     <th colspan="2">
       <div class="time">
-        <%= @post.created_at.in_time_zone('Bangkok').strftime("%d/%m/%Y %H:%M") %>
+        Posted <%= time_ago_in_words @post.created_at.in_time_zone('Bangkok') %> ago
       </div>
       <div class="action">
         <%= link_to 'Edit', edit_post_path(@post) %> | 
@@ -19,7 +19,7 @@
     <td><div class="big_letter">?{</div></td>
     <td>
       <div class="post_body">
-        <%= sanitize @post.body %>
+        <%= simple_format sanitize(@post.body) %>
       </div>
     </td>
   </tr>
@@ -28,7 +28,7 @@
   <tr>
     <th colspan="2">
       <div class="time">
-        <%= comment.created_at.in_time_zone('Bangkok').strftime("%d/%m/%Y %H:%M") %>
+        Posted <%= time_ago_in_words comment.created_at.in_time_zone('Bangkok') %> ago
       </div>
     </th>
   </tr>
@@ -37,13 +37,13 @@
     <td><div class="big_letter">r{</div></td>
     <td>
       <div class="post_body">
-        <%= sanitize comment.body %>
+        <%= simple_format sanitize(comment.body) %>
       </div>
     </td>
   </tr>
 <% end %>
 
-<% form_for [@post, Comment.new] do |f| %>
+<%= form_for [@post, Comment.new] do |f| %>
   <tr>
     <th colspan="2"><div class="time"><%= Time.now.in_time_zone('Bangkok').strftime("%d/%m/%Y %H:%M") %></th>
   </tr>
